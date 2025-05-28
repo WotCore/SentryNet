@@ -18,7 +18,6 @@ extensions.configure<DepsConfig> {
     profile = DepsConfig.Profile.FULL
 
     navigation(false)
-    room(false)
 }
 
 android {

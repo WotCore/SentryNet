@@ -56,7 +56,10 @@ class DepsPlugin : Plugin<Project> {
             addDeps("implementation", "core-ktx", "appcompat", "material", "constraintlayout")
 
             if (ext.enableLifecycle) {
-                addDeps("implementation", "lifecycle-viewmodel", "lifecycle-livedata")
+                addDeps(
+                    "implementation",
+                    "lifecycle-viewmodel", "lifecycle-livedata", "lifecycle-runtime"
+                )
             }
             if (ext.enableCoroutines) {
                 addDeps("implementation", "coroutines-core", "coroutines-android")
@@ -74,6 +77,9 @@ class DepsPlugin : Plugin<Project> {
             }
             if (ext.enablePaging3) {
                 addDeps("implementation", "paging-runtime")
+                if (ext.enableRoom) {
+                    addDeps("implementation", "room-paging")
+                }
             }
             if (ext.enableOkhttp3) {
                 addDeps("implementation", "okhttp3")

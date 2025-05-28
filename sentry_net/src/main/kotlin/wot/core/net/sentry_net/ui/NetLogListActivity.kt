@@ -1,5 +1,7 @@
 package wot.core.net.sentry_net.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -29,10 +31,8 @@ class NetLogListActivity : AppCompatActivity() {
 
         val dao = NetLogDatabase.getInstance(applicationContext).logDao()
         val repository = NetLogRepository(dao)
-        viewModel = ViewModelProvider(
-            this,
-            NetLogViewModelFactory(repository)
-        )[NetLogViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, NetLogViewModelFactory(repository))[NetLogViewModel::class.java]
 
         val recycler = findViewById<RecyclerView>(R.id.recyclerView)
         recycler.layoutManager = LinearLayoutManager(this)
@@ -43,6 +43,12 @@ class NetLogListActivity : AppCompatActivity() {
             viewModel.pagingDataFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
+        }
+    }
+
+    companion object {
+        fun createIntent(context: Context): Intent {
+            return Intent(context, NetLogListActivity::class.java)
         }
     }
 }

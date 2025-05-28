@@ -27,5 +27,8 @@ interface NetLogDao {
     @Query("SELECT * FROM net_logs ORDER BY timestamp DESC")
     fun pagingSource(): PagingSource<Int, NetLogEntity>
 
+    @Query("SELECT * FROM net_logs ORDER BY timestamp DESC")
+    suspend fun getAll(): List<NetLogEntity>
+
     // 可扩展其他查询方法，比如筛选等
 }
