@@ -1,9 +1,21 @@
 import wot.buildconfig.AndroidConfig
 import wot.buildconfig.JavaConfig
+import wot.deps.DepsConfig
+import wot.deps.DepsPlugin
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+}
+
+apply<DepsPlugin>()
+
+extensions.configure<DepsConfig> {
+    profile = DepsConfig.Profile.MINIMAL
+
+    room(true)
+    paging3(true)
+    okhttp3(true)
 }
 
 android {

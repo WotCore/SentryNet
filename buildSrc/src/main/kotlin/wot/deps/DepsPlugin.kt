@@ -72,7 +72,12 @@ class DepsPlugin : Plugin<Project> {
                 }
                 addDeps("kapt", "room.compiler")
             }
-
+            if (ext.enablePaging3) {
+                addDeps("implementation", "paging-runtime")
+            }
+            if (ext.enableOkhttp3) {
+                addDeps("implementation", "okhttp3")
+            }
             project.logger.lifecycle("> DepsPlugin: end")
         }
     }
